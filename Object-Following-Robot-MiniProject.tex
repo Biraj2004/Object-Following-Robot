@@ -213,7 +213,7 @@ ADC & Analog-to-Digital Converter \\ \hline
 \vspace{0.2in}
 This mini project presents the design, development, and physical implementation of an autonomous Object Following Robot using the Arduino UNO microcontroller. The system is designed to detect and trace a target object or human subject in real time, maintaining a pre-configured safe distance. The sensing unit consists of an HC-SR04 ultrasonic distance sensor mounted in a fixed position on the front of the robot chassis, providing continuous forward ranging. To supplement forward distance tracking, dual infrared (IR) proximity sensors are mounted on the left and right flanks of the robot chassis. These sensors determine whether the target is moving laterally, enabling the robot to execute sharp corrective turns and follow the target dynamically.\par
 \medskip
-The actuators are four brushed DC battery-operated (BO) geared motors controlled by an L298N dual H-bridge motor driver. The Arduino UNO processes sensory signals, calculates target distance and lateral position, and regulates motor speed using Pulse Width Modulation (PWM). In scenarios where the target moves out of the primary detection envelope, the robot halts and waits for a target to reappear in range, ensuring safe operations. Power is supplied by a dual-cell 18650 Lithium-Ion pack, establishing a clean common ground system. The assembled prototype was subjected to rigorous testing. Experimental results show that the robot follows targets reliably between 15 cm and 50 cm, halts immediately at a minimum safety threshold of 15 cm, and steers dynamically to track lateral movements, validating its utility in logistics, automation, and assistive services.\par
+The actuators are four brushed DC battery-operated (BO) geared motors controlled by an L298N dual H-bridge motor driver. The Arduino UNO processes sensory signals, calculates target distance and lateral position, and regulates motor speed using Pulse Width Modulation (PWM). In scenarios where the target moves out of the primary detection envelope, the robot halts and waits for a target to reappear in range, ensuring safe operations. Power is supplied by a dual-cell 18650 Lithium-Ion pack, establishing a clean common ground system. The assembled prototype was subjected to rigorous testing. Experimental results show that the robot follows targets reliably between 10 cm and 35 cm, initiates safety recovery maneuvers at a safety threshold of 10 cm, and steers dynamically to track lateral movements, validating its utility in logistics, automation, and assistive services.\par
 \clearpage
 
 \pagenumbering{arabic}
@@ -563,7 +563,7 @@ Distance $>$ 35 & High (No Refl) & High (No Refl) & Pivot Right (Search Mode) \\
 \end{center}
 
 \section{Performance Evaluation}
-The robot's tracking performance was evaluated in an indoor environment. Ranging trials showed that the ultrasonic sensor maintained an accuracy of $\pm$0.5 cm within the active tracking envelope (15 cm to 50 cm). The control loop latency, including sensor readings, was measured at 10 ms, enabling the robot to respond to target movements in real time. The 7.4V battery pack supplied sufficient power for 50 minutes of active operation. Figures \ref{fig:test_run} and \ref{fig:batt_mount} show the testing setup.
+The robot's tracking performance was evaluated in an indoor environment. Ranging trials showed that the ultrasonic sensor maintained an accuracy of $\pm$0.5 cm within the active tracking envelope (10 cm to 35 cm). The control loop latency, including sensor readings, was measured at 10 ms, enabling the robot to respond to target movements in real time. The 7.4V battery pack supplied sufficient power for 50 minutes of active operation. Figures \ref{fig:test_run} and \ref{fig:batt_mount} show the testing setup.
 
 \vspace{0.1in}
 \begin{center}
@@ -583,7 +583,7 @@ The robot's tracking performance was evaluated in an indoor environment. Ranging
 \end{center}
 
 \section{Conclusions}
-This mini project successfully demonstrates the design, construction, and evaluation of an autonomous Object Following Robot using the Arduino UNO microcontroller. By combining an HC-SR04 ultrasonic sensor with dual infrared proximity sensors, the robot detects and follows forward and lateral target movements. The physical prototype achieved the design goals, maintaining a safety margin of 15 cm and steering to match target speeds. In summary, the multi-sensor design provides a low-cost, power-efficient alternative to vision-based tracking systems, showing that cooperative sensor control can achieve reliable performance on low-power hardware.
+This mini project successfully demonstrates the design, construction, and evaluation of an autonomous Object Following Robot using the Arduino UNO microcontroller. By combining an HC-SR04 ultrasonic sensor with dual infrared proximity sensors, the robot detects and follows forward and lateral target movements. The physical prototype achieved the design goals, maintaining a safety margin of 10 cm and steering to match target speeds. In summary, the multi-sensor design provides a low-cost, power-efficient alternative to vision-based tracking systems, showing that cooperative sensor control can achieve reliable performance on low-power hardware.
 
 \section{Future Scope}
 Future enhancements could expand the robot's capabilities:
