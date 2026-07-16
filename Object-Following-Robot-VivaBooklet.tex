@@ -1,0 +1,528 @@
+\documentclass[12pt,a4paper,oneside]{report}
+\usepackage[margin=0.8in]{geometry}
+\usepackage{fontspec}
+\setmainfont{Times New Roman}
+\usepackage[none]{hyphenat}
+\usepackage{graphicx}
+\usepackage{array}
+\usepackage{setspace}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{tocloft}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage[colorlinks=true, linkcolor=black, citecolor=black, urlcolor=black]{hyperref}
+
+% Set line spacing to 1.3
+\setstretch{1.3}
+
+% Set paragraph styles: no paragraph indentation and no paragraph skip
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+
+% Style chapter and section headings: Centered and Bold for Topic Headings
+\titleformat{\chapter}[block]
+  {\normalfont\fontsize{18}{22}\selectfont\bfseries\centering}
+  {}{0pt}{}
+\titlespacing*{\chapter}{0pt}{10pt}{15pt}
+
+\titleformat{\section}
+  {\normalfont\fontsize{12}{15}\selectfont\bfseries\raggedright}
+  {}{0pt}{}
+\titlespacing*{\section}{0pt}{12pt}{6pt}
+
+% Style TOC Title to be Centered and Bold (22pt)
+\renewcommand{\contentsname}{Contents}
+\renewcommand{\cfttoctitlefont}{\normalfont\fontsize{22}{26}\selectfont\bfseries\centering}
+\renewcommand{\cftaftertoctitle}{\hfill}
+
+% Style TOC Chapter entries to be Bold and Italic
+\renewcommand{\cftchapfont}{\normalfont\bfseries\itshape}
+\renewcommand{\cftchappagefont}{\normalfont\bfseries\itshape}
+\setcounter{tocdepth}{0}
+
+\begin{document}
+
+% ==================== TITLE PAGE ====================
+\begin{titlepage}
+\centering
+\setstretch{1.3}
+\vspace*{0.8in}
+{\fontsize{26}{32}\selectfont\bfseries VIVA QUESTION BOOKLET\par}
+\vspace{0.4in}
+{\fontsize{18}{22}\selectfont\itshape Comprehensive VSA Study Guide\par}
+\vspace{0.8in}
+{\fontsize{16}{20}\selectfont For Mini Project:\par}
+\vspace{0.2in}
+{\fontsize{20}{26}\selectfont\bfseries OBJECT FOLLOWING ROBOT USING ARDUINO UNO\par}
+\vfill
+{\fontsize{14}{18}\selectfont Prepared By:\par}
+{\fontsize{16}{20}\selectfont\bfseries Biraj Sarkar \\ (Roll No. 34900323013)\par}
+\vspace{0.5in}
+{\fontsize{14}{18}\selectfont Under the Guidance of:\par}
+{\fontsize{16}{20}\selectfont\bfseries Dr. Gautam Das \\ (Project Supervisor)\par}
+\vfill
+{\fontsize{12}{16}\selectfont Department of Electronics and Communication Engineering \\ Cooch Behar Government Engineering College \\ 2026\par}
+\end{titlepage}
+
+\pagenumbering{roman}
+
+% ==================== TABLE OF CONTENTS ====================
+\newpage
+\begin{singlespace}
+\begingroup
+\titleformat{\chapter}[block]
+  {\normalfont\fontsize{22}{26}\selectfont\bfseries\centering}
+  {}{0pt}{}
+\tableofcontents
+\endgroup
+\end{singlespace}
+\clearpage
+
+\pagenumbering{arabic}
+
+% ==================== TOPIC 0: BASIC PREREQUISITE UNDERSTANDING & KNOWLEDGE ====================
+\chapter{Topic 0: Basic Prerequisite Understanding \& Knowledge}
+
+\section{Q1. What is an embedded system?}
+\textbf{Answer:} An embedded system is a dedicated computer system built into a larger product to perform a specific function, such as reading sensors and controlling actuators.
+
+\section{Q2. What does the term ``autonomous robot'' mean?}
+\textbf{Answer:} An autonomous robot operates independently without direct human input, using sensors to detect its environment and make decisions on its own.
+
+\section{Q3. What does VCC stand for and what is its role?}
+\textbf{Answer:} VCC stands for Voltage at the Common Collector and represents the positive supply voltage rail that powers active components on the circuit board.
+
+\section{Q4. What does GND represent in an electronic circuit?}
+\textbf{Answer:} GND represents the electrical common ground or reference point at 0V, providing a shared return path for current from all powered components.
+
+\section{Q5. What does GPIO stand for and what is it used for?}
+\textbf{Answer:} GPIO stands for General Purpose Input/Output; these configurable pins on a microcontroller can read digital sensor signals or drive output devices such as LEDs and motors.
+
+\section{Q6. What does PWM stand for, and what is it used to control?}
+\textbf{Answer:} PWM stands for Pulse Width Modulation; it varies the duty cycle of a digital square wave to control the average power delivered to a device, such as a DC motor.
+
+\section{Q7. What is a duty cycle in PWM?}
+\textbf{Answer:} The duty cycle is the ratio of the ON time of a pulse to its total period, expressed as a percentage; a higher duty cycle delivers more average power to the load.
+
+\section{Q8. What is the difference between an analog and a digital signal?}
+\textbf{Answer:} An analog signal is continuous and can take any value over a range, whereas a digital signal has only two discrete states: HIGH (1) or LOW (0).
+
+\section{Q9. What is a microcontroller, and how does it differ from a microprocessor?}
+\textbf{Answer:} A microcontroller integrates a CPU, memory, and I/O peripherals on a single chip for embedded applications, whereas a microprocessor is only a CPU that requires external memory and peripherals.
+
+\section{Q10. State Ohm's Law and write its mathematical expression.}
+\textbf{Answer:} Ohm's Law states that the current through a conductor is proportional to the voltage across it: $V = I \times R$, where $V$ is voltage, $I$ is current, and $R$ is resistance.
+
+\section{Q11. What is an H-Bridge and what is its primary function?}
+\textbf{Answer:} An H-Bridge is a circuit of four switches that can reverse the polarity of voltage across a load, allowing a motor to spin in both forward and reverse directions.
+
+\section{Q12. What is an ultrasonic wave?}
+\textbf{Answer:} An ultrasonic wave is a sound wave with a frequency above 20 kHz, which is higher than the upper limit of human hearing.
+
+\section{Q13. What is infrared (IR) radiation?}
+\textbf{Answer:} Infrared radiation is electromagnetic energy with wavelengths longer than visible light (approximately 700 nm to 1 mm), used in remote sensing and proximity detection.
+
+\section{Q14. What is a gear reduction ratio, and why is it used in motors?}
+\textbf{Answer:} A gear reduction ratio decreases the output speed while proportionally increasing output torque; it allows small motors to drive heavier loads that require more turning force.
+
+\section{Q15. What does the term ``differential drive'' mean in robotics?}
+\textbf{Answer:} A differential drive is a steering system where two independent wheel pairs are driven at different speeds or directions to produce turning and linear motion.
+
+\section{Q16. What is a state machine in software design?}
+\textbf{Answer:} A state machine is a programming model that defines a set of conditions (states) and the transitions between them based on input events, enabling organized decision-making.
+
+\section{Q17. What is a short circuit, and why is it dangerous?}
+\textbf{Answer:} A short circuit is a low-resistance path between supply and ground that causes uncontrolled high current flow, leading to overheating, battery damage, or component destruction.
+
+\section{Q18. What is back-EMF in DC motors?}
+\textbf{Answer:} Back-EMF (Electromotive Force) is the voltage generated by the spinning motor acting like a generator; it opposes the supply voltage and can cause transient voltage spikes in the driver circuit.
+
+\section{Q19. What does the acronym ``RISC'' stand for?}
+\textbf{Answer:} RISC stands for Reduced Instruction Set Computing, an architecture design that uses a small set of simple instructions to increase processing speed and efficiency.
+
+\section{Q20. State Kirchhoff's Voltage Law (KVL) and Current Law (KCL).}
+\textbf{Answer:} KVL states that the algebraic sum of all voltages around a closed loop is zero; KCL states that the sum of currents entering any node equals the sum leaving it.
+
+% ==================== TOPIC 1: ARDUINO UNO & MICROCONTROLLER ARCHITECTURE ====================
+\chapter{Topic 1: Arduino UNO \& Microcontroller Architecture}
+
+\section{Q21. What microcontroller chip is used on the Arduino UNO?}
+\textbf{Answer:} The Arduino UNO is based on the ATmega328P, an 8-bit RISC microcontroller manufactured by Microchip Technology (formerly Atmel).
+
+\section{Q22. What is the clock frequency of the ATmega328P on the Arduino UNO?}
+\textbf{Answer:} The ATmega328P on the Arduino UNO runs at a clock frequency of 16 MHz using an external crystal oscillator.
+
+\section{Q23. How much Flash, SRAM, and EEPROM memory does the ATmega328P have?}
+\textbf{Answer:} The ATmega328P contains 32 KB of Flash memory (program storage), 2 KB of SRAM (runtime data), and 1 KB of EEPROM (non-volatile data storage).
+
+\section{Q24. How many digital I/O pins does the Arduino UNO have, and how many support PWM?}
+\textbf{Answer:} The Arduino UNO has 14 digital I/O pins, of which 6 are capable of generating hardware PWM output signals.
+
+\section{Q25. How many analog input pins does the Arduino UNO have?}
+\textbf{Answer:} The Arduino UNO has 6 analog input pins (A0 to A5), each connected to an onboard 10-bit Analog-to-Digital Converter (ADC).
+
+\section{Q26. What is the operating voltage of the Arduino UNO?}
+\textbf{Answer:} The Arduino UNO operates at 5V logic levels; it can be powered from 7V to 12V via the barrel jack or 5V via the USB port.
+
+\section{Q27. How do you configure a GPIO pin as a digital output in Arduino code?}
+\textbf{Answer:} You use the \texttt{pinMode(pin, OUTPUT)} function in the \texttt{setup()} block to configure the specified pin to drive digital output signals.
+
+\section{Q28. What is the purpose of the \texttt{setup()} and \texttt{loop()} functions in Arduino?}
+\textbf{Answer:} The \texttt{setup()} function runs once at startup to initialize pins and peripherals; the \texttt{loop()} function runs repeatedly in an infinite cycle to execute the main control logic.
+
+\section{Q29. What is the \texttt{analogWrite()} function and what range of values does it accept?}
+\textbf{Answer:} \texttt{analogWrite()} outputs a PWM signal on a PWM-capable pin; it accepts values from 0 (always LOW) to 255 (always HIGH), representing 0\% to 100\% duty cycle.
+
+\section{Q30. What is the \texttt{digitalRead()} function used for in this project?}
+\textbf{Answer:} It reads the current logic state (HIGH or LOW) of a digital input pin; in this project it reads the binary output signals from the left and right IR sensors.
+
+\section{Q31. What does the \texttt{delay()} function do in Arduino code?}
+\textbf{Answer:} The \texttt{delay(ms)} function pauses execution of the code for the specified number of milliseconds, blocking all other processing during that time.
+
+\section{Q32. What is the difference between \texttt{INPUT} and \texttt{INPUT\_PULLUP} in Arduino?}
+\textbf{Answer:} \texttt{INPUT} configures a pin with no pull resistor, making it float when unconnected; \texttt{INPUT\_PULLUP} enables an internal pull-up resistor, holding the pin HIGH when no external signal is applied.
+
+\section{Q33. What is the purpose of the \texttt{return} statement in the safety recovery block of the code?}
+\textbf{Answer:} The \texttt{return} statement exits the current iteration of the \texttt{loop()} function immediately after the safety backup maneuver, preventing any further sensor processing in that cycle.
+
+\section{Q34. What is the ADC resolution of the ATmega328P and what is its maximum integer output?}
+\textbf{Answer:} The ATmega328P has a 10-bit ADC, producing integer values from 0 to 1023 that map the analog input voltage range.
+
+\section{Q35. What is EEPROM, and what advantage does it offer in embedded systems?}
+\textbf{Answer:} EEPROM (Electrically Erasable Programmable Read-Only Memory) is non-volatile memory that retains data when power is removed, useful for storing calibration values permanently.
+
+\section{Q36. What is the difference between blocking code and non-blocking code?}
+\textbf{Answer:} Blocking code (such as using \texttt{delay()}) halts program execution until it completes; non-blocking code allows the loop to continue executing other tasks while waiting.
+
+\section{Q37. What is the Arduino \texttt{Serial.begin()} function used for?}
+\textbf{Answer:} It initializes the hardware UART serial port at a specified baud rate, enabling communication between the Arduino and a PC for debugging via the Serial Monitor.
+
+\section{Q38. What is the difference between \texttt{digitalWrite()} and \texttt{analogWrite()}?}
+\textbf{Answer:} \texttt{digitalWrite()} sets a pin fully HIGH or LOW; \texttt{analogWrite()} outputs a variable duty cycle PWM wave to simulate intermediate average voltage levels.
+
+\section{Q39. What is a watchdog timer and does the ATmega328P include one?}
+\textbf{Answer:} A watchdog timer automatically resets the microcontroller if software stops responding; yes, the ATmega328P includes a built-in watchdog timer with configurable timeout periods.
+
+\section{Q40. Why was the Arduino UNO chosen over an ESP32 for this project?}
+\textbf{Answer:} The Arduino UNO is simpler, lower in cost, and entirely sufficient for processing ultrasonic and IR sensor data; the project does not require wireless communication or high-speed computing.
+
+% ==================== TOPIC 2: HC-SR04 ULTRASONIC SENSOR ====================
+\chapter{Topic 2: HC-SR04 Ultrasonic Sensor}
+
+\section{Q41. What is the operating voltage of the HC-SR04 sensor?}
+\textbf{Answer:} The HC-SR04 ultrasonic distance sensor operates at 5V DC, which is directly compatible with the Arduino UNO's output voltage.
+
+\section{Q42. What is the frequency of the ultrasonic burst emitted by the HC-SR04?}
+\textbf{Answer:} The HC-SR04 transmits an 8-cycle burst of ultrasonic waves at 40 kHz, which is well above the range of human hearing.
+
+\section{Q43. Write the distance formula used by the HC-SR04 and explain each variable.}
+\textbf{Answer:} $d = (t \times 0.034) / 2$, where $t$ is the echo pulse duration in microseconds, 0.034 cm/$\mu$s is the speed of sound, and the factor of 2 accounts for the round trip of the wave.
+
+\section{Q44. What is the effective measuring range of the HC-SR04?}
+\textbf{Answer:} The HC-SR04 can measure distances accurately from 2 cm to 400 cm (4 metres) with a stated accuracy of approximately 3 mm.
+
+\section{Q45. What pins of the HC-SR04 are connected to the Arduino UNO in this project?}
+\textbf{Answer:} The TRIG pin is connected to digital pin D8 and the ECHO pin is connected to digital pin D13 of the Arduino UNO.
+
+\section{Q46. How long is the trigger pulse that must be sent to the HC-SR04?}
+\textbf{Answer:} A 10 $\mu$s (microsecond) HIGH pulse must be sent on the TRIG pin to initiate a single ranging measurement cycle.
+
+\section{Q47. What does the NewPing library do, and why is it used in this project?}
+\textbf{Answer:} The NewPing library provides an optimized, non-blocking interface for the HC-SR04 sensor, handling trigger-echo timing internally and returning the measured distance directly in centimeters.
+
+\section{Q48. What does the code \texttt{sonar.ping\_cm()} return?}
+\textbf{Answer:} It returns the measured distance in centimeters as an integer; it returns 0 if no echo is received within the maximum detection timeout period.
+
+\section{Q49. Why does the code replace a zero return value with 200 cm?}
+\textbf{Answer:} A zero return means no target was detected within range; replacing it with 200 cm ensures the robot enters search mode instead of triggering an incorrect safety recovery maneuver.
+
+\section{Q50. What is the speed of sound in air at room temperature?}
+\textbf{Answer:} The speed of sound in air at approximately 20\textdegree{}C is about 343 m/s (or 0.0343 cm/$\mu$s), which is the physical constant used in the distance formula.
+
+\section{Q51. Why is the HC-SR04 not affected by ambient lighting conditions?}
+\textbf{Answer:} The HC-SR04 uses acoustic (sound) waves rather than light, so changes in room brightness or direct sunlight do not interfere with its distance measurements.
+
+\section{Q52. What is the sensing beam angle of the HC-SR04?}
+\textbf{Answer:} The HC-SR04 has an effective cone-shaped sensing beam with an angle of approximately 15 degrees around its central axis.
+
+\section{Q53. What is the minimum measurable distance of the HC-SR04, and why does it have a lower limit?}
+\textbf{Answer:} The minimum distance is 2 cm; objects closer than this fall within the transition zone where the transmitted pulse overlaps with the echo before the sensor can switch modes.
+
+\section{Q54. What is the purpose of defining \texttt{MAX\_DISTANCE 200} in the code?}
+\textbf{Answer:} It sets the NewPing library's timeout limit, instructing the library to stop listening for echoes after the time equivalent to a 200 cm round trip has elapsed.
+
+\section{Q55. What is the control loop latency achieved in this project, and why does it matter?}
+\textbf{Answer:} The control loop latency was measured at approximately 10 ms, enabling the robot to react to target movements in near-real time without noticeable lag.
+
+\section{Q56. What is the difference between the TRIG and ECHO pins on the HC-SR04?}
+\textbf{Answer:} The TRIG pin is an input that receives the 10 $\mu$s trigger pulse from the Arduino; the ECHO pin is an output that produces a high pulse whose duration encodes the measured distance.
+
+\section{Q57. Why should the HC-SR04 not be tested with soft or fabric surfaces?}
+\textbf{Answer:} Soft materials absorb ultrasonic energy and produce weak echoes, significantly reducing detection accuracy and potentially causing missed or erroneous distance readings.
+
+\section{Q58. Can two HC-SR04 sensors interfere with each other on the same robot?}
+\textbf{Answer:} Yes, if both sensors transmit simultaneously, one sensor's echo signal can be intercepted by the other; they must be triggered sequentially to avoid cross-talk.
+
+\section{Q59. What does the ultrasonic sensor represent in the system block diagram?}
+\textbf{Answer:} It forms the primary sensor input, feeding Echo/Trig signals into the Arduino UNO to determine the forward distance to the target.
+
+\section{Q60. How does the code determine whether to apply a high or low speed PWM value?}
+\textbf{Answer:} The ternary expression \texttt{(distance > 25) ? 220 : 170} sets PWM to 220 when the target is more than 25 cm away and to 170 when it is within 25 cm, slowing the robot as it approaches.
+
+% ==================== TOPIC 3: IR PROXIMITY SENSORS & LATERAL TRACKING ====================
+\chapter{Topic 3: IR Proximity Sensors \& Lateral Tracking}
+
+\section{Q61. How does an IR proximity sensor detect an obstacle?}
+\textbf{Answer:} The sensor emits infrared light from an IR LED; when an object is nearby, reflected light reaches the photodiode receiver. An LM393 comparator outputs a digital LOW when reflected signal strength exceeds the set threshold.
+
+\section{Q62. What is the output logic of the IR sensor when an object is detected?}
+\textbf{Answer:} The IR sensor outputs a digital LOW (logic 0) when an obstacle is detected within its calibrated range, and a HIGH (logic 1) when no obstacle is present.
+
+\section{Q63. How is the detection range of the IR sensor adjusted?}
+\textbf{Answer:} The onboard potentiometer adjusts the reference voltage of the LM393 comparator, setting the sensitivity and maximum detection distance (calibrated to approximately 8 cm in this project).
+
+\section{Q64. What is the typical detection range calibrated for the IR sensors in this project?}
+\textbf{Answer:} The IR sensors were calibrated to trigger when an object was within approximately 8 cm, preventing false detections from ambient light and distant surfaces.
+
+\section{Q65. Which Arduino UNO pins are the right and left IR sensor outputs connected to?}
+\textbf{Answer:} The Right IR sensor output is connected to D2 and the Left IR sensor output is connected to D3 of the Arduino UNO.
+
+\section{Q66. What action does the robot take when only the right IR sensor detects an object?}
+\textbf{Answer:} When the right IR sensor outputs LOW (\texttt{rightIR == LOW}) and the left is HIGH, the robot executes \texttt{setMotors('R')} to pivot right toward the target.
+
+\section{Q67. What action does the robot take when only the left IR sensor detects an object?}
+\textbf{Answer:} When the left IR sensor outputs LOW (\texttt{leftIR == LOW}) and the right is HIGH, the robot executes \texttt{setMotors('L')} to pivot left toward the target.
+
+\section{Q68. What happens when both IR sensors read HIGH simultaneously?}
+\textbf{Answer:} Both HIGH indicates no lateral obstacle; the robot then uses the ultrasonic distance to decide whether to drive forward (10--35 cm) or enter search mode (more than 35 cm).
+
+\section{Q69. Why are IR sensors used for lateral tracking instead of a second ultrasonic sensor?}
+\textbf{Answer:} IR sensors are smaller, simpler, and cheaper; their binary detection output is sufficient for lateral deviation detection, and adding a second ultrasonic sensor would require complex angular scanning logic.
+
+\section{Q70. Why are IR sensors susceptible to ambient sunlight interference?}
+\textbf{Answer:} Direct sunlight contains a strong infrared component that can saturate the photodiode receiver, preventing it from distinguishing between sunlight and the sensor's own reflected IR signal.
+
+\section{Q71. What is the LM393 comparator in the IR sensor module?}
+\textbf{Answer:} The LM393 is a dual voltage comparator IC that compares the photodiode output against a reference set by the potentiometer and generates a clean digital HIGH or LOW signal.
+
+\section{Q72. What is the purpose of the indicator LED on the IR sensor module?}
+\textbf{Answer:} The indicator LED lights up when an obstacle is detected, providing a visual diagnostic tool to verify sensor triggering during calibration without needing a serial monitor.
+
+\section{Q73. If the left IR sensor output reads LOW, which side is the target on?}
+\textbf{Answer:} A LOW reading on the left IR sensor means the target has been detected on the left flank of the robot, prompting it to steer left.
+
+\section{Q74. What is the condition in the code for the robot to drive forward?}
+\textbf{Answer:} The robot drives forward when \texttt{distance >= MIN\_DISTANCE \&\& distance <= FOLLOW\_DISTANCE} is true and neither IR sensor is detecting a lateral object.
+
+\section{Q75. What does the code condition \texttt{rightIR == HIGH \&\& leftIR == LOW} trigger?}
+\textbf{Answer:} This condition means the left IR sensor has detected the target, so the robot calls \texttt{setMotors('L')} to pivot left to follow it.
+
+\section{Q76. What is the role of IR sensors in the system architecture block diagram?}
+\textbf{Answer:} They form the lateral sensor input layer, feeding binary Digital In signals to the Arduino UNO that indicate whether the target is on the left or right flank.
+
+\section{Q77. Can the IR sensor be used in complete darkness?}
+\textbf{Answer:} Yes, IR sensors are self-contained; they emit their own infrared light and measure reflections, making them fully functional in complete darkness.
+
+\section{Q78. What is the effect of a highly reflective or shiny surface on IR sensor performance?}
+\textbf{Answer:} Highly reflective surfaces return a stronger echo, potentially triggering detection at a greater distance than the calibrated range and causing the robot to respond incorrectly.
+
+\section{Q79. Why is it important to calibrate both IR sensors symmetrically?}
+\textbf{Answer:} Asymmetric calibration would cause one sensor to trigger at a greater range than the other, making the robot consistently bias its steering to one side even when following a straight-ahead target.
+
+\section{Q80. What is the search mode behavior of the robot when no sensor detects a target?}
+\textbf{Answer:} When the ultrasonic distance exceeds 35 cm and both IR sensors read HIGH, the \texttt{else} branch calls \texttt{setMotors('R')}, making the robot pivot right to scan the environment for the lost target.
+
+% ==================== TOPIC 4: L298N MOTOR DRIVER & POWER SCHEME ====================
+\chapter{Topic 4: L298N Motor Driver \& Power Scheme}
+
+\section{Q81. What does the L298N contain internally to drive motors?}
+\textbf{Answer:} The L298N contains two full H-bridge circuits built from high-power bipolar transistors (BJTs), allowing it to independently control two DC motors in both directions.
+
+\section{Q82. What are the ENA and ENB pins on the L298N, and how are they used?}
+\textbf{Answer:} ENA and ENB are the enable pins for the two H-bridge channels; applying a PWM signal to them regulates the average motor voltage and controls motor speed.
+
+\section{Q83. What are the IN1, IN2, IN3, and IN4 pins on the L298N?}
+\textbf{Answer:} These are direction control input pins; setting IN1 HIGH and IN2 LOW spins the first motor forward, while IN1 LOW and IN2 HIGH reverses it. IN3/IN4 control the second motor similarly.
+
+\section{Q84. What is the maximum supply voltage and current capacity of the L298N?}
+\textbf{Answer:} The L298N can handle motor supply voltages up to 46V and deliver a peak output current of 2A per channel.
+
+\section{Q85. Why is the 7.4V battery pack connected directly to the L298N and not directly to the Arduino?}
+\textbf{Answer:} To prevent motor current spikes from causing voltage drops on the microcontroller's supply rail, which would cause the Arduino to reset unexpectedly.
+
+\section{Q86. How does the Arduino UNO receive its 5V supply in this project?}
+\textbf{Answer:} The onboard LM7805 voltage regulator on the L298N driver board steps down the 7.4V motor supply to a stable 5V output, which then powers the Arduino UNO.
+
+\section{Q87. What is the function of connecting all grounds together in the circuit?}
+\textbf{Answer:} Connecting the grounds of the battery, Arduino, and L298N establishes a shared 0V reference point, ensuring that PWM control signals from the Arduino are correctly interpreted by the driver.
+
+\section{Q88. What problem was observed when the SG90 servo motor was included in the prototype?}
+\textbf{Answer:} The SG90 servo motor drew high inrush current during rotation, causing a voltage brownout on the 5V logic rail that repeatedly reset the Arduino and destabilized sensor readings.
+
+\section{Q89. Why was the OLED display removed from the final prototype?}
+\textbf{Answer:} The OLED display was removed as part of the power simplification; it added to the logic rail current load and, combined with the servo, contributed to voltage instability causing repeated resets.
+
+\section{Q90. What is a voltage brownout in microcontroller circuits?}
+\textbf{Answer:} A brownout occurs when the supply voltage drops below the minimum operating threshold of the microcontroller, causing it to reset, malfunction, or produce erratic sensor readings.
+
+\section{Q91. How are the four BO motors wired in this project?}
+\textbf{Answer:} The four motors are wired as two parallel pairs: the left two motors connected to channel A (ENA, IN1, IN2) and the right two motors connected to channel B (ENB, IN3, IN4).
+
+\section{Q92. What is the consequence of not connecting the common ground between the Arduino and L298N?}
+\textbf{Answer:} Without a common ground, the PWM signals from the Arduino have no shared voltage reference with the driver, causing erratic motor behavior or complete control failure.
+
+\section{Q93. What is back-EMF suppression in the L298N, and how is it handled?}
+\textbf{Answer:} When motors stop or reverse, they generate inductive back-EMF spikes; the L298N includes built-in freewheeling diodes that provide a safe return path for this energy, protecting the transistors.
+
+\section{Q94. How does the PWM value of 170 vs. 220 affect the robot's movement speed?}
+\textbf{Answer:} A PWM value of 170 ($\approx$67\% duty cycle) delivers less average voltage to the motors for slower speed when close to the target; 220 ($\approx$86\%) delivers higher speed when the target is farther away.
+
+\section{Q95. What is the difference between motor ``stop'' and motor ``brake'' in H-Bridge control?}
+\textbf{Answer:} Stop (coasting) removes drive current, letting the motor slow under friction; braking shorts the motor terminals to create regenerative braking that stops it quickly.
+
+\section{Q96. What is the LM7805 IC, and where is it used in this circuit?}
+\textbf{Answer:} The LM7805 is a linear voltage regulator outputting a stable 5V from a higher input; it is integrated on the L298N driver board to power the Arduino UNO's logic.
+
+\section{Q97. What future upgrade is proposed to fix the servo motor voltage problem?}
+\textbf{Answer:} Adding an LM2596 step-down (buck) converter to create an isolated, regulated power rail for the servo, preventing its current spikes from affecting the Arduino's 5V logic rail.
+
+\section{Q98. What is the operating voltage of the BO geared motors used in this project?}
+\textbf{Answer:} The BO geared motors operate between 3V and 9V DC, driven at approximately 6V (after the L298N internal voltage drop) from the 7.4V battery supply.
+
+\section{Q99. What is the RPM and gear reduction ratio of the BO motors used?}
+\textbf{Answer:} The motors deliver approximately 150 RPM at 6V and have a 1:48 gear reduction ratio, trading rotational speed for increased torque to drive the chassis.
+
+\section{Q100. What is the approximate battery runtime achieved in this project?}
+\textbf{Answer:} The dual 18650 Lithium-Ion cell pack (7.4V, 2200 mAh) supplied stable power for approximately 50 minutes of active robot operation under full motor load.
+
+% ==================== TOPIC 5: DIFFERENTIAL DRIVE KINEMATICS & CONTROL ALGORITHM ====================
+\chapter{Topic 5: Differential Drive Kinematics \& Control Algorithm}
+
+\section{Q101. What is differential drive kinematics?}
+\textbf{Answer:} Differential drive kinematics describes how a robot's linear and angular velocities result from varying the speeds of its independently controlled left and right wheel pairs.
+
+\section{Q102. Write the equation for the linear velocity of a differential drive robot.}
+\textbf{Answer:} The linear velocity is $v = \dfrac{v_R + v_L}{2}$, where $v_R$ and $v_L$ are the linear speeds of the right and left wheels respectively.
+
+\section{Q103. Write the equation for the angular velocity of a differential drive robot.}
+\textbf{Answer:} The angular velocity is $\omega = \dfrac{v_R - v_L}{W}$, where $W$ is the wheel track width (distance between the left and right wheels).
+
+\section{Q104. How does the robot execute a forward motion?}
+\textbf{Answer:} Both the left and right wheel pairs rotate forward at equal speeds ($v_L = v_R > 0$), producing zero angular velocity and purely linear forward motion.
+
+\section{Q105. How does the robot execute a backward (reverse) motion?}
+\textbf{Answer:} Both the left and right wheel pairs rotate in reverse at equal speeds ($v_L = v_R < 0$), producing backward linear motion with no rotation.
+
+\section{Q106. How does the robot execute a pivot left turn?}
+\textbf{Answer:} The left wheels rotate in reverse while the right wheels rotate forward ($v_R = -v_L > 0$), creating equal and opposite forces that rotate the robot in place to the left.
+
+\section{Q107. How does the robot execute a pivot right turn?}
+\textbf{Answer:} The right wheels rotate in reverse while the left wheels rotate forward ($v_L = -v_R > 0$), creating equal and opposite forces that rotate the robot in place to the right.
+
+\section{Q108. What direction code does the character `F' represent in the \texttt{setMotors()} function?}
+\textbf{Answer:} The character `F' sets IN1 and IN3 HIGH (and IN2, IN4 LOW), driving both motor pairs in the forward direction.
+
+\section{Q109. What direction code does the character `B' represent in the \texttt{setMotors()} function?}
+\textbf{Answer:} The character `B' sets IN2 and IN4 HIGH (and IN1, IN3 LOW), reversing both motor pairs to drive the robot backward.
+
+\section{Q110. What direction code does the character `S' represent, and how is it implemented?}
+\textbf{Answer:} The character `S' represents Stop; all four IN pins default to LOW (the \texttt{default:} case does nothing), delivering zero drive current to both motor pairs.
+
+\section{Q111. What does the safety recovery sequence do, step by step?}
+\textbf{Answer:} When distance $<$ 10 cm: stop (\texttt{S}) for 300 ms, reverse (\texttt{B}) for 400 ms, stop (\texttt{S}) for 200 ms, pivot right (\texttt{R}) for 300 ms, then stop (\texttt{S}) and exit the loop with \texttt{return}.
+
+\section{Q112. What is the MIN\_DISTANCE threshold defined in the code and what does it trigger?}
+\textbf{Answer:} \texttt{MIN\_DISTANCE} is defined as 10 cm; if the target comes closer than this, it triggers the safety backup and turn maneuver to prevent a collision.
+
+\section{Q113. What is the FOLLOW\_DISTANCE threshold and what behavior does it bound?}
+\textbf{Answer:} \texttt{FOLLOW\_DISTANCE} is defined as 35 cm; the robot drives forward when the target distance is between 10 cm and 35 cm. Beyond 35 cm the robot enters search mode.
+
+\section{Q114. What is dynamic speed control and how is it implemented in the code?}
+\textbf{Answer:} Dynamic speed control adjusts motor PWM based on distance; the ternary expression \texttt{(distance > 25) ? 220 : 170} applies a higher duty cycle when the target is farther away.
+
+\section{Q115. Why is a C++ \texttt{switch} statement used in \texttt{setMotors()} instead of an \texttt{if-else} chain?}
+\textbf{Answer:} A \texttt{switch} statement produces cleaner, more readable code for multiple discrete cases and may compile to slightly more efficient jump-table instructions on the ATmega328P.
+
+\section{Q116. What role does the \texttt{NewPing} object play at the top of the code?}
+\textbf{Answer:} \texttt{NewPing sonar(TRIG\_PIN, ECHO\_PIN, MAX\_DISTANCE)} creates a sonar object that internally manages the TRIG pulse timing and ECHO measurement for the HC-SR04.
+
+\section{Q117. What five sensor state conditions are mapped in the calibration table?}
+\textbf{Answer:} (1) Distance $<$10 cm: Safety Back \& Turn; (2) 10--35 cm, both IR HIGH: Forward; (3) Right IR LOW: Pivot Right; (4) Left IR LOW: Pivot Left; (5) $>$35 cm, both IR HIGH: Search Pivot.
+
+\section{Q118. What ranging accuracy was measured during testing?}
+\textbf{Answer:} The ranging accuracy was $\pm$0.5 cm within the active tracking envelope of 10 cm to 35 cm during the indoor prototype evaluation.
+
+\section{Q119. Why does the safety distance check occur before the IR sensor checks in the code?}
+\textbf{Answer:} A collision risk is safety-critical and must override all other behaviors; placing it first ensures the robot always backs off before any steering decision is made.
+
+\section{Q120. What is the key advantage of using a state machine in the robot's control code?}
+\textbf{Answer:} A state machine provides clear, organized, and mutually exclusive behavior modes (Forward, Left, Right, Backup, Search), making the code easy to read, debug, and extend.
+
+% ==================== TOPIC 6: SYSTEM INTEGRATION & EXPERIMENTAL RESULTS ====================
+\chapter{Topic 6: System Integration \& Experimental Results}
+
+\section{Q121. What is shown in the system block diagram of this robot?}
+\textbf{Answer:} The block diagram shows the HC-SR04 and dual IR sensors feeding signals to the Arduino UNO, which outputs PWM and direction signals to the L298N driver, which drives the four BO motors; the 7.4V battery powers both the driver and the Arduino.
+
+\section{Q122. What software framework was used to write the control firmware?}
+\textbf{Answer:} The control firmware was written in C++ using the Arduino IDE 2.x framework, leveraging the \texttt{Arduino.h} core library and the \texttt{NewPing.h} sensor library.
+
+\section{Q123. Why was the NewPing library selected over a manual pulseIn implementation?}
+\textbf{Answer:} NewPing uses non-blocking timing and handles edge cases such as no-echo returns, providing a cleaner and more reliable abstraction than writing raw \texttt{pulseIn()} and \texttt{delayMicroseconds()} calls.
+
+\section{Q124. How was the IR sensor calibration performed during system testing?}
+\textbf{Answer:} The onboard potentiometers were adjusted while placing an object at exactly 8 cm until the indicator LED reliably lit up, ensuring consistent detection across both sensors.
+
+\section{Q125. What chassis type does the robot use, and how many wheels does it have?}
+\textbf{Answer:} The robot uses a 4-wheel differential drive chassis with four BO geared motors wired in parallel left and right pairs for independent side control.
+
+\section{Q126. What is the battery configuration used in this project?}
+\textbf{Answer:} Two 18650 Lithium-Ion cells are connected in series, producing a 7.4V nominal output with a 2200 mAh capacity.
+
+\section{Q127. What performance envelope was validated during testing?}
+\textbf{Answer:} The prototype reliably followed targets between 10 cm and 35 cm, backed up to recover a safe distance if the target was closer than 10 cm, and steered smoothly for lateral movements.
+
+\section{Q128. What is the primary conclusion of this mini project?}
+\textbf{Answer:} The project demonstrates that a low-cost, power-efficient Object Following Robot can be successfully built using the Arduino UNO with combined acoustic and infrared sensing, without requiring expensive vision-based hardware.
+
+% ==================== TOPIC 7: TROUBLESHOOTING & FUTURE SCOPE ====================
+\chapter{Topic 7: Troubleshooting \& Future Scope}
+
+\section{Q129. What problem was observed with the servo motor in the initial prototype?}
+\textbf{Answer:} The SG90 servo motor drew a high inrush current during rotation, causing a voltage brownout on the 5V logic rail that repeatedly reset the Arduino and produced erratic sensor data.
+
+\section{Q130. What component is proposed to fix the servo motor voltage problem in future versions?}
+\textbf{Answer:} An LM2596 step-down buck converter would provide a separate, isolated power rail for the servo motor, preventing its transient current draw from reaching the Arduino's 5V logic rail.
+
+\section{Q131. What is the difference between a linear regulator (LM7805) and a buck converter (LM2596)?}
+\textbf{Answer:} A linear regulator dissipates excess voltage as heat (low efficiency), while a buck converter uses high-frequency switching and an inductor to transfer energy efficiently (much higher efficiency).
+
+\section{Q132. What is the proposed upgrade to add a wider sensor scanning field of view?}
+\textbf{Answer:} Re-integrating the SG90 micro servo to rotate the HC-SR04 ultrasonic sensor through up to 180 degrees, creating an active scanning arc instead of a fixed forward-looking beam.
+
+\section{Q133. What would re-introducing the OLED display add to the system?}
+\textbf{Answer:} A 0.96-inch SSD1306 OLED display would show the current target distance and robot action (Forward, Backup, Searching) in real time, allowing users to monitor robot behavior without a PC.
+
+\section{Q134. What microcontroller upgrade is proposed for wireless and camera-based tracking?}
+\textbf{Answer:} Upgrading to an ESP32 with an ESP32-CAM module would enable Wi-Fi, Bluetooth, and onboard camera-based human detection, eliminating the need for dedicated IR and ultrasonic hardware.
+
+\section{Q135. What is a PID controller and why is it proposed as a future improvement?}
+\textbf{Answer:} A Proportional-Integral-Derivative (PID) controller continuously adjusts motor speed based on the error between the desired and actual position, producing smoother acceleration and deceleration.
+
+\section{Q136. What is the major limitation of the L298N motor driver in terms of power efficiency?}
+\textbf{Answer:} The L298N uses BJT transistors with a high saturation voltage drop of approximately 1.8V to 2.0V, wasting battery energy as heat and reducing effective motor torque.
+
+\section{Q137. What modern component would replace the L298N for better efficiency?}
+\textbf{Answer:} A MOSFET-based motor driver such as the TB6612FNG, which has a much lower ON-resistance ($R_{DS(on)}$) and significantly less heat dissipation than the BJT-based L298N.
+
+\section{Q138. What is the difference between a Time-of-Flight (ToF) sensor and the HC-SR04?}
+\textbf{Answer:} A ToF sensor uses laser light pulses and measures the return time of photons, providing faster and higher-precision distance measurements unaffected by surface material or temperature.
+
+\section{Q139. What is sensor fusion, and how could it improve this robot?}
+\textbf{Answer:} Sensor fusion combines data from multiple sensors (e.g., ultrasonic, camera, ToF) using algorithms to produce a more accurate and reliable model of the environment than any single sensor alone.
+
+\section{Q140. What would happen if the common ground connection between the Arduino and L298N was removed?}
+\textbf{Answer:} The digital control signals (IN1--IN4, ENA, ENB) from the Arduino would have no shared voltage reference with the L298N driver, causing all motor direction logic to fail or behave erratically.
+
+\end{document}
