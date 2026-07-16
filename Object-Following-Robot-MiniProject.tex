@@ -211,9 +211,9 @@ ADC & Analog-to-Digital Converter \\ \hline
 % ==================== PAGE 6: ABSTRACT ====================
 \chapter*{Abstract}
 \vspace{0.2in}
-This mini project presents the design, development, and physical implementation of an autonomous Object Following Robot using the Arduino UNO microcontroller. The system is designed to detect and trace a target object or human subject in real time, maintaining a pre-configured safe distance. The sensing unit consists of an HC-SR04 ultrasonic distance sensor mounted in a fixed position on the front of the robot chassis, providing continuous forward ranging. To supplement forward distance tracking, dual infrared (IR) proximity sensors are mounted on the left and right flanks of the robot chassis. These sensors determine whether the target is moving laterally, enabling the robot to execute sharp corrective turns and follow the target dynamically.\par
+This mini project presents the design and construction of an autonomous Object Following Robot using the Arduino UNO microcontroller. The robot is designed to detect and follow a target object or person in real time while keeping a safe distance. The sensing unit consists of an HC-SR04 ultrasonic distance sensor mounted in a fixed position on the front of the robot chassis, which measures the distance to the target. To help with distance tracking, two infrared (IR) proximity sensors are mounted on the left and right sides of the chassis. These IR sensors detect if the target moves sideways, allowing the robot to turn and follow the target dynamically.\par
 \medskip
-The actuators are four brushed DC battery-operated (BO) geared motors controlled by an L298N dual H-bridge motor driver. The Arduino UNO processes sensory signals, calculates target distance and lateral position, and regulates motor speed using Pulse Width Modulation (PWM). In scenarios where the target moves out of the primary detection envelope, the robot halts and waits for a target to reappear in range, ensuring safe operations. Power is supplied by a dual-cell 18650 Lithium-Ion pack, establishing a clean common ground system. The assembled prototype was subjected to rigorous testing. Experimental results show that the robot follows targets reliably between 10 cm and 35 cm, initiates safety recovery maneuvers at a safety threshold of 10 cm, and steers dynamically to track lateral movements, validating its utility in logistics, automation, and assistive services.\par
+The robot is driven by four battery-operated (BO) geared motors controlled by an L298N dual H-bridge motor driver. The Arduino UNO reads the sensor signals, calculates the distance and direction of the target, and controls the motor speed using Pulse Width Modulation (PWM). If the target goes out of range, the robot stops and waits for it to reappear. The system is powered by a 7.4V battery pack made of two 18650 Lithium-Ion cells with a shared common ground. We tested the assembled prototype extensively. The results show that the robot follows targets reliably between 10 cm and 35 cm, backs up to recover a safe distance if the target gets closer than 10 cm, and turns smoothly to track lateral movements.\par
 \clearpage
 
 \pagenumbering{arabic}
@@ -413,7 +413,9 @@ where $v_L$ is the linear velocity of the left wheels, $v_R$ is the linear veloc
 \end{itemize}
 
 \section{Power Scheme and Ground Isolation}
-Interfacing motors and microcontrollers on a single power supply requires isolating voltage fluctuations. DC motors draw high currents during startup and direction changes, which can pull down the battery voltage and reset the Arduino. The power delivery circuit is split into two rails. The 7.4V battery pack connects directly to the L298N motor driver's power pin (12V terminal) to power the DC motors. The L298N's internal 5V linear regulator steps down the 7.4V to power the Arduino UNO via its 5V pin. Connecting the grounds of the battery, Arduino, and motor driver is essential to establish a common reference for the control signals.
+Connecting DC motors and microcontrollers to the same power supply can cause issues. When DC motors start up or change directions, they draw a lot of current. This can drop the battery voltage and reset the Arduino UNO. To prevent this, we split the power lines. The 7.4V battery pack connects directly to the L298N motor driver to power the motors. The driver's internal regulator steps down the voltage to 5V to power the Arduino UNO. We also connected the grounds of the battery, Arduino, and motor driver together to establish a shared ground reference.\par
+\medskip
+When we first built the prototype, we included a 0.96-inch SSD1306 OLED display and an SG90 micro servo motor. However, when the servo motor turned, it drew too much current and caused the voltage on the 5V line to drop. This voltage drop caused the Arduino to reset repeatedly and made the sensor readings unstable. To solve this power issue and make the robot run reliably on a single battery pack, we removed the display and the servo motor from the final design.
 \clearpage
 
 % ==================== PAGE 15: CHAPTER 4: SOFTWARE IMPLEMENTATION ====================
@@ -586,13 +588,13 @@ The robot's tracking performance was evaluated in an indoor environment. Ranging
 This mini project successfully demonstrates the design, construction, and evaluation of an autonomous Object Following Robot using the Arduino UNO microcontroller. By combining an HC-SR04 ultrasonic sensor with dual infrared proximity sensors, the robot detects and follows forward and lateral target movements. The physical prototype achieved the design goals, maintaining a safety margin of 10 cm and steering to match target speeds. In summary, the multi-sensor design provides a low-cost, power-efficient alternative to vision-based tracking systems, showing that cooperative sensor control can achieve reliable performance on low-power hardware.
 
 \section{Future Scope}
-Future enhancements could expand the robot's capabilities:
+Although we removed the display and the servo motor from the final prototype due to power and voltage issues, future versions can add them back by improving the circuit:
 \begin{enumerate}[noitemsep,topsep=2pt,parsep=0pt,partopsep=0pt]
-    \item Integrating an SG90 micro servo motor to rotate the ultrasonic sensor, enabling dynamic 180-degree environmental scanning.
-    \item Adding a 0.96-inch SSD1306 OLED display to provide real-time distance and action status updates.
-    \item Implementing an LM2596 Buck converter to isolate the servo's power draw and prevent microcontroller resets.
+    \item Re-integrating the SG90 micro servo motor to rotate the ultrasonic sensor, allowing it to scan the environment up to 180 degrees.
+    \item Re-introducing the 0.96-inch SSD1306 OLED display to show the target distance and robot actions in real time.
+    \item Adding an LM2596 buck converter to isolate the servo's power draw from the microcontroller and prevent resets.
     \item Upgrading the microcontroller to an ESP32 for wireless control and camera-based human tracking (ESP32-CAM).
-    \item Implementing a PID control loop to smooth motor acceleration and deceleration curves.
+    \item Implementing a PID control loop to make the robot accelerate and decelerate more smoothly.
 \end{enumerate}
 \clearpage
 
