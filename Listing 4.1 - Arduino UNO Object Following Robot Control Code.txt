@@ -1,0 +1,82 @@
+// Listing 4.1 - Arduino UNO Object Following Robot Control Code
+#include <NewPing.h>
+
+#define TRIG_PIN 8
+#define ECHO_PIN 13
+#define MAX_DISTANCE 200
+
+#define RIGHT_IR 2
+#define LEFT_IR 3
+
+#define ENA 10
+#define ENB 11
+#define IN1 4
+#define IN2 5
+#define IN3 6
+#define IN4 7
+
+#define MIN_DISTANCE 10
+#define FOLLOW_DISTANCE 35
+
+NewPing sonar(TRIG_PIN, ECHO_PIN, MAX_DISTANCE);
+
+// Direction codes: F, B, L, R, S
+void setMotors(char dir) {
+  int in1 = LOW, in2 = LOW, in3 = LOW, in4 = LOW;
+  switch (dir) {
+    case 'F': in1 = HIGH; in3 = HIGH; break;
+    case 'B': in2 = HIGH; in4 = HIGH; break;
+    case 'L': in1 = HIGH; in4 = HIGH; break;
+    case 'R': in2 = HIGH; in3 = HIGH; break;
+    default: break;  // 'S' -> all LOW
+  }
+  digitalWrite(IN1, in1);
+  digitalWrite(IN2, in2);
+  digitalWrite(IN3, in3);
+  digitalWrite(IN4, in4);
+}
+
+void setup() {
+  pinMode(RIGHT_IR, INPUT);
+  pinMode(LEFT_IR, INPUT);
+  pinMode(ENA, OUTPUT);
+  pinMode(ENB, OUTPUT);
+  pinMode(IN1, OUTPUT);
+  pinMode(IN2, OUTPUT);
+  pinMode(IN3, OUTPUT);
+  pinMode(IN4, OUTPUT);
+  setMotors('S');
+}
+
+void loop() {
+  int distance = sonar.ping_cm();
+  if (distance == 0) distance = 200;
+
+  int rightIR = digitalRead(RIGHT_IR);
+  int leftIR  = digitalRead(LEFT_IR);
+
+  // Dynamic speed control
+  int speedValue = (distance > 25) ? 220 : 170;
+  analogWrite(ENA, speedValue);
+  analogWrite(ENB, speedValue);
+
+  // Obstacle too close -> back off and turn
+  if (distance < MIN_DISTANCE) {
+    setMotors('S'); delay(300);
+    setMotors('B'); delay(400);
+    setMotors('S'); delay(200);
+    setMotors('R'); delay(300);
+    setMotors('S');
+    return;
+  }
+
+  if (rightIR == LOW && leftIR == HIGH) {
+    setMotors('R');                                    // turn right
+  } else if (rightIR == HIGH && leftIR == LOW) {
+    setMotors('L');                                     // turn left
+  } else if (distance >= MIN_DISTANCE && distance <= FOLLOW_DISTANCE) {
+    setMotors('F');                                     // follow object
+  } else {
+    setMotors('R');                                     // search mode
+  }
+}
