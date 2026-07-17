@@ -420,8 +420,7 @@ where $v_L$ is the linear velocity of the left wheels, $v_R$ is the linear veloc
 \end{itemize}
 
 \section{Power Scheme and Ground Isolation}
-Connecting DC motors and microcontrollers to the same power supply can cause issues. When DC motors start up or change directions, they draw a lot of current. This can drop the battery voltage and reset the Arduino UNO. To prevent this, we split the power lines. The 7.4V battery pack connects directly to the L298N motor driver to power the motors. The driver's internal regulator steps down the voltage to 5V to power the Arduino UNO. We also connected the grounds of the battery, Arduino, and motor driver together to establish a shared ground reference.\par
-When we first built the prototype, we included a 0.96-inch SSD1306 OLED display and an SG90 micro servo motor. However, this configuration caused transient voltage drops and microcontroller resets under load, leading to their removal from the final design.
+Connecting DC motors and microcontrollers to the same power supply can cause issues. When DC motors start up or change directions, they draw a lot of current. This can drop the battery voltage and reset the Arduino UNO. To prevent this, we split the power lines. The 7.4V battery pack connects directly to the L298N motor driver to power the motors. The driver's internal regulator steps down the voltage to 5V to power the Arduino UNO. We also connected the grounds of the battery, Arduino, and motor driver together to establish a shared ground reference.
 \clearpage
 
 % ==================== PAGE 15: CHAPTER 4: SOFTWARE IMPLEMENTATION ====================
@@ -532,7 +531,7 @@ void loop() {
 % ==================== PAGE 18: CHAPTER 5: RESULTS & CONCLUSIONS ====================
 \chapter{Experimental Results, Conclusions and Future Scope}
 \section{System Calibration and Testing}
-Testing began by calibrating the ultrasonic and infrared sensors. The ultrasonic sensor was tested against a flat target at distances from 5 cm to 100 cm to verify ranging accuracy. The infrared sensors were calibrated using their onboard potentiometers to trigger when an object was within 8 cm, preventing false detections from ambient light. Table \ref{tab:calibration} outlines the sensor calibration data and command mappings. Figure \ref{fig:circuit_diagram} shows the circuit diagram, Figure \ref{fig:assem_robot} shows another perspective of the physical prototype, and Figure \ref{fig:wiring_inside} shows the internal chassis wiring.
+Testing began by calibrating the ultrasonic and infrared sensors. The ultrasonic sensor was tested against a flat target at distances from 5 cm to 100 cm to verify ranging accuracy. The infrared sensors were calibrated using their onboard potentiometers to trigger when an object was within 8 cm, preventing false detections from ambient light. Table \ref{tab:calibration} outlines the sensor calibration data and command mappings. Additionally, trials were conducted on different floor surfaces to calibrate the minimum PWM start-up thresholds for the BO geared motors, ensuring smooth motion initiation. We also verified the ultrasonic sensor's performance against both hard and soft target surfaces to ensure consistent echo reception. Figure \ref{fig:circuit_diagram} shows the circuit diagram, Figure \ref{fig:assem_robot} shows another perspective of the physical prototype, and Figure \ref{fig:wiring_inside} shows the internal chassis wiring.
 
 \vspace{0.15in}
 \begin{center}
@@ -554,6 +553,7 @@ Distance $>$ 35 & High (No Refl) & High (No Refl) & Pivot Right (Search Mode) \\
 \label{tab:calibration}
 \end{center}
 
+\newpage
 \vspace{0.1in}
 \begin{center}
 \includegraphics[width=0.75\textwidth,keepaspectratio=true]{images/4WD Car.png}
